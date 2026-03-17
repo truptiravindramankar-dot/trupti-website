@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:21st.dev)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(cp -r /tmp/tru-nutrition/. /Users/sarvinsamuelbastin/Documents/Trupti-website/)",
+      "Bash(cp /tmp/tru_nutrition_detailed_website_content.pdf /Users/sarvinsamuelbastin/Documents/Trupti-website/)",
+      "Bash(npx shadcn@latest init -d)"
+    ]
+  }
+}
