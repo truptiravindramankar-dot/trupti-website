@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
@@ -145,81 +146,67 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right - Product Visual */}
+          {/* Right - Trupti with TruSeeds */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             className="relative flex items-center justify-center"
           >
-            <div className="relative w-full max-w-md mx-auto">
-              {/* Glow behind product */}
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-sage/40 via-brand-gold/20 to-brand-green/30 rounded-full blur-3xl scale-110" />
+            <div className="relative w-full max-w-lg mx-auto">
+              {/* Glow behind photo */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-brand-sage/30 via-brand-gold/20 to-brand-green/20 rounded-[2rem] blur-2xl" />
 
-              {/* Product showcase card */}
-              <div className="relative bg-white/60 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-brand-warm/50 shadow-xl">
-                {/* Day indicators */}
-                <div className="flex justify-center gap-2 mb-8">
-                  {["M", "T", "W", "T", "F", "S", "S"].map((day, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5 + i * 0.08 }}
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                        i < 3
-                          ? "bg-brand-green text-white shadow-md shadow-brand-green/30"
-                          : "bg-brand-warm/60 text-brand-dark/50"
-                      }`}
-                    >
-                      {day}
-                    </motion.div>
-                  ))}
-                </div>
+              {/* Photo container */}
+              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-brand-green/15 border border-brand-warm/30">
+                <Image
+                  src="/trupti-truseeds.png"
+                  alt="Trupti enjoying TruSeeds - pouring super seeds into a bowl"
+                  width={600}
+                  height={750}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
 
-                {/* Sachet illustration */}
-                <div className="relative mx-auto w-48 h-56 sm:w-56 sm:h-64 mb-8">
-                  <motion.div
-                    animate={{ y: [-5, 5, -5] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-gradient-to-br from-brand-green via-brand-green-light to-brand-olive rounded-2xl shadow-2xl shadow-brand-green/20 flex flex-col items-center justify-center text-white p-4 sm:p-6"
-                  >
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 flex items-center justify-center mb-3 sm:mb-4">
-                      <span className="text-2xl sm:text-3xl">🌱</span>
+                {/* Overlay gradient at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
+
+                {/* Floating badge on photo */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg"
+                >
+                  <div className="text-xs font-semibold text-brand-green">5 Super Seeds</div>
+                  <div className="text-[10px] text-brand-dark/50">25g per sachet</div>
+                </motion.div>
+
+                {/* Day tracker floating at bottom */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                  className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-brand-dark">Weekly Routine</span>
+                    <div className="flex gap-1.5">
+                      {["M", "T", "W", "T", "F", "S", "S"].map((day, i) => (
+                        <div
+                          key={i}
+                          className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                            i < 4
+                              ? "bg-brand-green text-white"
+                              : "bg-brand-warm/60 text-brand-dark/40"
+                          }`}
+                        >
+                          {day}
+                        </div>
+                      ))}
                     </div>
-                    <span className="text-base sm:text-lg font-bold font-serif">TruSeeds</span>
-                    <span className="text-xs sm:text-sm opacity-80 mt-1">Daily Sachet</span>
-                    <div className="mt-3 sm:mt-4 px-3 sm:px-4 py-1.5 rounded-full bg-white/20 text-xs font-semibold">
-                      25g • Day 4
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Seeds preview */}
-                <div className="flex justify-center gap-3 sm:gap-4">
-                  {[
-                    { emoji: "🌾", name: "Flax" },
-                    { emoji: "🎃", name: "Pumpkin" },
-                    { emoji: "🌻", name: "Sunflower" },
-                    { emoji: "🍈", name: "Melon" },
-                    { emoji: "🌿", name: "Basil" },
-                  ].map((seed, i) => (
-                    <motion.div
-                      key={seed.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8 + i * 0.1 }}
-                      className="flex flex-col items-center gap-1"
-                    >
-                      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-brand-cream flex items-center justify-center text-lg sm:text-xl shadow-sm">
-                        {seed.emoji}
-                      </div>
-                      <span className="text-[10px] sm:text-xs font-medium text-brand-dark/50">
-                        {seed.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
